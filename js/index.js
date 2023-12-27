@@ -192,7 +192,7 @@ function endAuction() {
                     //     }
                 }
             } else {
-                document.querySelector('h2').textContent = '拍賣競買人頭標';
+                document.querySelector('h2').textContent = '拍賣競買人投標';
                 // console.log("無資料");
             }
         } 
