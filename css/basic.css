@@ -1,0 +1,169 @@
+/**手機**/
+@media only screen and (min-width: 0px) and (max-width: 490px){
+  .nowPrice{
+      height: 150px;
+      text-align: center;
+      line-height: 100px ;
+      font-size: 12px;
+      color: white;
+ }
+  h2{
+      margin:10px;
+      text-align: center;
+      font-size: 12px;
+      color: red;
+ }
+  .price{
+      width:100%;
+      height: 300px;
+      background-color: #3B7C6E;
+      display: flexbox;
+      justify-content: center;
+      align-items: center;
+     /* display: none;
+      */
+ }
+  ul li {
+      cursor: pointer;
+      position: relative;
+      padding: 12px 8px 12px 40px;
+      list-style-type: none;
+      background: #eee;
+      font-size: 12px;
+      transition: 0.2s;
+     /* make the list items unselectable */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+ }
+  .title{
+      height: 100px;
+      text-align: center;
+      line-height: 100px ;
+      font-size: 12px;
+      color: white;
+ }
+}
+/**電腦**/
+@media only screen and (min-width: 490px) {
+  .nowPrice{
+      height: 150px;
+      text-align: center;
+      line-height: 100px ;
+      font-size: 7em;
+      color: white;
+ }
+  h2{
+      margin:10px;
+      text-align: center;
+      font-size: 2.5em;
+      color: red;
+ }
+  .price{
+      width:100%;
+      height: 400px;
+      background-color: #3B7C6E;
+      display: flexbox;
+      justify-content: center;
+      align-items: center;
+     /* display: none;
+      */
+ }
+  ul li {
+      cursor: pointer;
+      position: relative;
+      padding: 12px 8px 12px 40px;
+      list-style-type: none;
+      background: #eee;
+      font-size: 2em;
+      transition: 0.2s;
+     /* make the list items unselectable */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+ }
+  .title{
+      height: 100px;
+      text-align: center;
+      line-height: 100px ;
+      font-size: 2.5em;
+      color: white;
+ }
+}
+body {
+  margin: 0;
+  min-width: 250px;
+}
+/* Include the padding and border in an element's total width and height */
+* {
+  box-sizing: border-box;
+}
+h3{
+ /* margin:10px;
+  */
+  text-align: center;
+ /* font-size: 2em;
+  */
+}
+/* Remove margins and padding from the list */
+ul {
+  margin: 10;
+  padding: 0;
+}
+/* Style the list items */
+/* Set all odd list items to a different color (zebra-stripes) */
+ul li:nth-child(even) {
+  background: #f9f9f9;
+  color: black;
+}
+ul li{
+  background-color: #FFF2CD;
+  border: 1px solid white;
+}
+ul li.check{
+
+  font-size: 2.5em;
+  font-weight: bolder;
+  border: 2px solid black;
+  box-shadow: 0px 0px 12px rgba(0,0,0,0.5);
+  inset: 6px 6px 32px rgba(255,255,255,0.1);
+  inset :0px 0px 8px rgba(255,255,255,0.5);
+  inset: -5px -5px 12px rgba(0,0,0,0.25);
+}
+/* Darker background-color on hover */
+ul li:hover {
+  background: #ddd;
+}
+/* When clicked on, add a background color and strike out text */
+/* ul li.checked {
+  background: #888;
+  color: #fff;
+  text-decoration: line-through;
+}
+*/
+/* Add a "checked" mark when clicked on */
+ul li.checked::before {
+  content: '';
+  position: absolute;
+  border-color: #fff;
+  border-style: solid;
+  border-width: 0 2px 2px 0;
+  top: 10px;
+  left: 16px;
+  transform: rotate(45deg);
+  height: 15px;
+  width: 7px;
+}
+.picture{
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+img{
+  width :40%;
+  background-color: white;
+}
