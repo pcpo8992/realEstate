@@ -1,11 +1,12 @@
 let item;
 let priceDetailArray;
-let nowPrice = document.querySelector(".nowPrice");
-createDate();
+let nowPrice ;
+
 
 window.onload = function() {
     let i = 0;
-
+    nowPrice = document.querySelector(".nowPrice");
+    createDate();
     createData();
 
     setInterval(function() {
@@ -155,18 +156,19 @@ function endAuction() {
             // console.log("number" + numberEndAuction);
             // if (numberEndAuction == itemArray.length) {
             if (nowNumber != null) {
-                if (itemArray[nowNumber].endAuction == 2) {
-                    // console.log("endAuction");
-                    document.querySelector('h2').textContent = '拍賣競買人投標';
-                    document.querySelector('.nowPrice').textContent = '';
+                if (itemArray[nowNumber].status == 2 && itemArray[nowNumber].endAuction == 2) {
+                    // // console.log("endAuction");
+                    // document.querySelector('h2').textContent = '拍賣競買人投標';
+                    // document.querySelector('.nowPrice').textContent = '';
 
-                    while (true) {
-                        if (document.querySelectorAll("li").length == 0) {
-                            break;
-                        } else {
-                            document.querySelectorAll("li")[0].remove();
-                        }
-                    }
+                    // while (true) {
+                    //     if (document.querySelectorAll("li").length == 0) {
+                    //         break;
+                    //     } else {
+                    //         document.querySelectorAll("li")[0].remove();
+                    //     }
+                    // }
+                    createData();
                 } else if (itemArray[nowNumber].status == 2 && itemArray[nowNumber].nopeople == 1) {
                     // document.querySelector('h2').textContent = '拍賣競買人喊價';
                     document.querySelector('.nowPrice').textContent = '無人應買';
