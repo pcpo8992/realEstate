@@ -7,6 +7,7 @@
       font-size: 12px;
       color: white;
  }
+
   h2{
       margin:10px;
       text-align: center;
@@ -136,12 +137,7 @@ ul li.check{
 ul li:hover {
   background: #ddd;
 }
-/* When clicked on, add a background color and strike out text */
-/* ul li.checked {
-  background: #888;
-  color: #fff;
-  text-decoration: line-through;
-}
+
 */
 /* Add a "checked" mark when clicked on */
 ul li.checked::before {
@@ -167,3 +163,15 @@ img{
   width :40%;
   background-color: white;
 }
+
+table,
+td {
+  border: 1px solid #333;
+}
+
+thead,
+tfoot {
+  background-color: #333;
+  color: #fff;
+}
+

@@ -1,6 +1,6 @@
 let item;
 let priceDetailArray;
-let nowPrice ;
+let nowPrice;
 
 
 window.onload = function() {
@@ -46,8 +46,6 @@ function createData() {
         item = e.val();
         if (item != null) {
             let itemArray = Object.values(item);
-            // console.log(itemArray)
-            // document.querySelector("h2").textContent = "拍賣物名稱 : " + itemArray[i].itemName;
 
             while (true) {
                 if (document.querySelectorAll("li").length == 0) {
@@ -60,18 +58,14 @@ function createData() {
 
             priceDetailArray = null;
             for (let i = 0; i < itemArray.length; i++) {
-                if (itemArray[i].status == 2 && itemArray.endAuction == null) {
+                if (itemArray[i].status == 2 && itemArray.endAuction == null && itemArray.nopeople == undefined) {
                     // console.log(itemArray[i].itemID)
-       
-                    document.querySelector("h2").innerHTML = "拍賣標的名稱 : <br>" + itemArray[i].itemName  ;
+                    
+                    document.querySelector("h2").innerHTML = "<span style='color:blue'>股別：</span>" + itemArray[i].deptNo + "<br>" + "<span style='color:blue'>案號：</span><br>" + itemArray[i].execNo + "<br>" + "<span style='color:blue'>拍賣標的：</span><br>" + itemArray[i].itemName;
                     if (itemArray[i].price_detail != null) {
                         let webId = itemArray[i].itemID;
                         let webName = itemArray[i].itemName;
-                        // console.log(webName);
-                        // console.log(webId);
-                        // document.querySelector("h2").textContent = "拍賣物名稱 : " + webName;
                         priceDetailArray = Object.values(itemArray[i].price_detail.li);
-                        // priceDetailArray = Object.values(itemArray[i].price_detail.li);
                     }
                 }
             }
@@ -80,41 +74,22 @@ function createData() {
 
             if (priceDetailArray != null) {
                 for (let i = 0; i < priceDetailArray.length; i++) {
-                    // if (priceDetailArray[i]['myInputPeople'] != null) {
-                        // let li = document.createElement("li");
-                        // var finialValue = inputValuePeople + "號競買人 喊價 " + numberComma(inputValuePrice) + " 元";
-                        // let finialValue =  numberComma(priceDetailArray[i]['myInputPrice']).toString() + " 元";
-                        // console.log(finialValue);
-                        // let t = document.createTextNode(finialValue);
-                        // li.appendChild(t);
-                        // li.appendChild(t);
-                        // ul.prepend(li);
-                        nowPrice.textContent = numberComma(priceDetailArray[i]['myInputPrice']);
-                        console.log(nowPrice.textContent);
-                        //   console.log(priceDetailArray.length);
-                        //   console.log(priceDetailArray);
-                    // } else {
-                        // nowPrice.textContent = "";
-                    // }
+                    nowPrice.textContent = numberComma(priceDetailArray[i]['myInputPrice']);
+                    console.log(nowPrice.textContent);
                 }
 
                 if (priceDetailArray.length != 0 && priceDetailArray[0]['myInputPeople'] != null) {
                     document.querySelector("li").setAttribute("class", "check");
                 }
 
-
                 let number = 0;
                 for (let i = 0; i < priceDetailArray.length; i++) {
                     if (priceDetailArray[i]['myInputPeople'] == null) {
                         number++;
-                    }else{
+                    } else {
                         number++;
                     }
                 }
-                // if (priceDetailArray.length == number) {
-                //     console.log('priceDetailArray.length == number');
-                //     nowPrice.textContent = "";
-                // }
             }
         }
     })
@@ -146,6 +121,7 @@ function endAuction() {
             // console.log(itemArray.length);
             let numberEndAuction = 0;
             let numberEndAuction2 = 0;
+            let nopeopleCount = 0;
 
             for (let i = 0; i < itemArray.length; i++) {
                 if (itemArray[i].status == 2) {
@@ -153,26 +129,19 @@ function endAuction() {
                     break;
                 }
             }
-            // console.log("number" + numberEndAuction);
-            // if (numberEndAuction == itemArray.length) {
+            for (let i = 0; i < itemArray.length; i++) {
+                if (itemArray[i].status == 2 && itemArray[i].nopeople == 1) {
+                    nopeopleCount += 1;
+                }
+            }
             if (nowNumber != null) {
                 if (itemArray[nowNumber].status == 2 && itemArray[nowNumber].endAuction == 2) {
-                    // // console.log("endAuction");
-                    // document.querySelector('h2').textContent = '拍賣競買人投標';
-                    // document.querySelector('.nowPrice').textContent = '';
-
-                    // while (true) {
-                    //     if (document.querySelectorAll("li").length == 0) {
-                    //         break;
-                    //     } else {
-                    //         document.querySelectorAll("li")[0].remove();
-                    //     }
-                    // }
+                    // console.log('1');
                     createData();
-                } else if (itemArray[nowNumber].status == 2 && itemArray[nowNumber].nopeople == 1) {
-                    // document.querySelector('h2').textContent = '拍賣競買人喊價';
-                    document.querySelector('.nowPrice').textContent = '無人應買';
-                    console.log("無人應買");
+                } else if (itemArray[nowNumber].status == 2 && itemArray[nowNumber].nopeople == 1 && nopeopleCount <= 1) {
+                    // console.log('2');
+                    document.querySelector('.nowPrice').textContent = '無人得標';
+
                     while (true) {
                         if (document.querySelectorAll("li").length == 0) {
                             break;
@@ -180,25 +149,27 @@ function endAuction() {
                             document.querySelectorAll("li")[0].remove();
                         }
                     }
-                } else if (itemArray[nowNumber].status == 1) {
-                    // console.log("status == 1");
-                    // document.querySelector('h2').textContent = '拍賣競買人喊價';
-                    // console.log("無資料");
-                    // document.querySelector('.nowPrice').textContent = '';
+                } else if(nopeopleCount > 1){
+                    // console.log('3');
+                    while (true) {
+                        if (document.querySelectorAll("li").length == 0) {
+                            break;
+                        } else {
+                            document.querySelectorAll("li")[0].remove();
+                        }
+                    }
+                    document.querySelector('.nowPrice').textContent = '無人得標';
+                    document.querySelector("h2").innerHTML = "<span style='color:blue'>股別：</span>" + itemArray[nowNumber].deptNo + "<br>" + "<span style='color:blue'>案號：</span><br>" + itemArray[nowNumber].execNo ;
 
-                    // while (true) {
-                    //     if (document.querySelectorAll("li").length == 0) {
-                    //         break;
-                    //     } else {
-                    //         document.querySelectorAll("li")[0].remove();
-                    //     }
+                }
+                else if (itemArray[nowNumber].status == 1) {
+                    //do nothing
+                    console.log('4');
                 }
             } else {
                 document.querySelector('h2').textContent = '拍賣競買人投標';
-                // console.log("無資料");
+                console.log('5');
             }
-        } 
-
-        //   let ul = document.querySelector("#myUL");
+        }
     })
 }
