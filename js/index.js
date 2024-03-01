@@ -19,7 +19,7 @@ window.onload = function() {
 
 function createDate() {
     let time = new Date();
-    let finialTime = '<span style="font-size: 1em">(現在時間：' + time.toLocaleString() + ') </span>';
+    let finialTime = '<span style="font-size: 1.3em">(現在時間：' + time.toLocaleString() + ') </span>';
     document.querySelector("h3").innerHTML = finialTime;
 }
 
